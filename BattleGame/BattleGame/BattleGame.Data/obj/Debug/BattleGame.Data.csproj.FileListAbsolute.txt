@@ -1,0 +1,10 @@
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\BattleGame.Data.dll.config
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\BattleGame.Data.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\BattleGame.Data.pdb
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\BattleGame.Models.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\EntityFramework.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\BattleGame.Models.pdb
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\bin\Debug\EntityFramework.xml
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\obj\Debug\BattleGame.Data.csprojResolveAssemblyReference.cache
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\obj\Debug\BattleGame.Data.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Data\obj\Debug\BattleGame.Data.pdb

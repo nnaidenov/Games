@@ -1,0 +1,6 @@
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\bin\Game.Client.dll.config
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\bin\Game.Client.dll
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\bin\Game.Client.pdb
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\obj\Debug\Game.Client.csprojResolveAssemblyReference.cache
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\obj\Debug\Game.Client.dll
+C:\Users\Werew\Google Диск\BattleGame\Game.Client\Game.Client\obj\Debug\Game.Client.pdb

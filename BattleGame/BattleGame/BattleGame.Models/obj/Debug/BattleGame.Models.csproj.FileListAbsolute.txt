@@ -1,0 +1,5 @@
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Models\bin\Debug\BattleGame.Models.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Models\bin\Debug\BattleGame.Models.pdb
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Models\obj\Debug\BattleGame.Models.csprojResolveAssemblyReference.cache
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Models\obj\Debug\BattleGame.Models.dll
+C:\Users\Werew\Google Диск\BattleGame\BattleGame\BattleGame.Models\obj\Debug\BattleGame.Models.pdb
