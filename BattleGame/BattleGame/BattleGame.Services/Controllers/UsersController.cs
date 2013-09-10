@@ -110,5 +110,28 @@ namespace BattleGame.Services.Controllers
                 return response;
             });
         }
+
+        [HttpGet]
+        [ActionName("details")]
+        public HttpResponseMessage UserDetails(
+            [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
+            string sessionKey)
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new GameContext();
+                var user = UserPersister.GetUserBySessionKey(sessionKey, context);
+
+                var model = new UserDetails
+                {
+                    Avatar = user.Avatar,
+                    Nickname = user.Nickname,
+                    Username = user.Username
+                };
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK, model);
+                return response;
+            });
+        }
     }
 }

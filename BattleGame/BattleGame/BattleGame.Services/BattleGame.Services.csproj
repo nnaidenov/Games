@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="Models\LoginUserModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\UserResponseModel.cs" />
     <Compile Include="Persisters\BasePersister.cs" />
     <Compile Include="Persisters\UserPersister.cs" />
@@ -179,8 +180,6 @@
     <Content Include="Global.asax" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
@@ -193,10 +192,30 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\app\data.js" />
+    <Content Include="Scripts\app\view-models.js" />
+    <Content Include="Scripts\app\views.js" />
+    <Content Include="Scripts\libs\class.js" />
+    <Content Include="Scripts\libs\http-requester.js" />
+    <None Include="Scripts\libs\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\libs\jquery-2.0.3.js" />
+    <Content Include="Scripts\libs\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\libs\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\libs\knockout-2.3.0.js" />
+    <Content Include="Scripts\libs\q.js" />
+    <Content Include="Scripts\libs\q.min.js" />
+    <Content Include="Scripts\libs\sammy-0.7.4.js" />
+    <Content Include="Scripts\libs\sammy-0.7.4.min.js" />
+    <None Include="Scripts\libs\_references.js" />
+    <Content Include="Scripts\partials\loginForm.html" />
+    <Content Include="Scripts\partials\privateMenu.html" />
+    <Content Include="Scripts\partials\profile.html" />
+    <Content Include="Scripts\partials\profilePreview.html" />
+    <Content Include="Scripts\partials\publicMenu.html" />
+    <Content Include="Scripts\partials\registerForm.html" />
+    <Content Include="Styles\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -205,7 +224,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -227,6 +245,9 @@
       <Project>{173C37A0-53CC-4541-A12D-FD051C0991CD}</Project>
       <Name>BattleGame.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\libs\jquery-2.0.3.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
