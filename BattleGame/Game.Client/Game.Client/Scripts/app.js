@@ -1,7 +1,7 @@
 ﻿/// <reference path="libs/_references.js" />
 
 $(document).ready(function () {
-    var dataPersist = dataPersister.get("http://localhost:19261/api/");
+    var dataPersist = dataPersister.get("http://localhost:40111/api/");
     var app = Sammy('#app', function () {
 
         this.get('#/', function () {
@@ -40,8 +40,9 @@ $(document).ready(function () {
                 var self = this;
                 httpRequester.getTemplate("registerForm")
                    .then(function (html) {
-                       $('#game').html(html);
+                       $('#main-content').html(html);
                        var vm = vmFactory.getRegisterVM(function () {
+                           $("#main-content").html("");
                            self.redirect('#/');
                        });
 
@@ -63,13 +64,26 @@ $(document).ready(function () {
                 var self = this;
                 httpRequester.getTemplate("loginForm")
                    .then(function (html) {
-                       $('#game').html(html);
+                       $('#main-content').html(html);
                        var vm = vmFactory.getLoginVM(function () {
+                           $("#main-content").html("");
                            self.redirect('#/');
                        });
 
                        ko.applyBindings(vm);
                    });
+            }
+        });
+
+        this.get('#/logout', function () {
+            if (dataPersist.users.isLogin()) {
+                dataPersist.users.logout();
+            }
+            else {
+                httpRequester.getTemplate("publicMenu")
+                     .then(function (html) {
+                         $('#menu').html(html);
+                     });
             }
         });
     });

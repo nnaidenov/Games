@@ -7,7 +7,7 @@ window.dataPersister = (function () {
         login: function (username, password) {
             var user = {
                 username: username,
-                authcode: CryptoJS.SHA1(password).toString()
+                authCode: CryptoJS.SHA1(password).toString()
             };
             console.log(user);
             console.log(5);
@@ -17,12 +17,12 @@ window.dataPersister = (function () {
                 localStorage.setItem("nickname", data.nickname);
             });
         },
-        register: function (username, nickname, avatar, password) {
+        register: function (username, nickname, password, avatar) {
             var user = {
                 username: username,
                 nickname: nickname,
                 avatar: avatar,
-                authcode: CryptoJS.SHA1(password).toString()
+                authCode: CryptoJS.SHA1(password).toString()
             };
 
             return httpRequester.postJSON(this.apiUrl + "/register", user)

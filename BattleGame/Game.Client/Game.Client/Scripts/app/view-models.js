@@ -1,13 +1,13 @@
 ﻿/// <reference path="../libs/_references.js" />
 
 window.vmFactory = (function () {
-    var dataPersist = dataPersister.get("http://localhost:19261/api/");
+    var dataPersist = dataPersister.get("http://localhost:40111/api/");
 
     function getRegisterViewModel(callBack) {
         var viewModel = {
-            username: ko.observable("a"),
-            nickname: ko.observable("a"),
-            password: ko.observable("a"),
+            username: ko.observable(""),
+            nickname: ko.observable(""),
+            password: ko.observable(""),
             register: function () {
                 dataPersist.users.register(this.username(), this.nickname(), this.password())
                  .then(function () {
