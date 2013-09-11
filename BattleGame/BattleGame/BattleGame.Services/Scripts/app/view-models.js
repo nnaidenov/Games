@@ -52,12 +52,16 @@ window.vmFactory = (function () {
     function getProfileViewModel() {
         return dataPersist.users.detailInformation()
             .then(function (data) {
+                if (data.heroes.length == 0) {
+                    data.heroes.push({name: "No heroes"});
+                }
                 var viewModel = {
                     username: data.username,
                     nickname: data.nickname,
-                    avatar: data.avatar
+                    avatar: "ds",
+                    heroes: data.heroes
                 }
-
+                console.log(data.heroes);
                 return viewModel;
             });
     }
