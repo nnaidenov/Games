@@ -126,7 +126,14 @@ namespace BattleGame.Services.Controllers
                 {
                     Avatar = user.Avatar,
                     Nickname = user.Nickname,
-                    Username = user.Username
+                    Username = user.Username,
+                    Heroes = (
+                    from h in user.Heroes
+                    select new ViewHeroeModel
+                    {
+                        Id = h.Id,
+                        Name = h.Name
+                    })
                 };
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK, model);

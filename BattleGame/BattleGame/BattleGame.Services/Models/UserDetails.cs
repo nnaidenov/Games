@@ -17,5 +17,8 @@ namespace BattleGame.Services.Models
 
         [DataMember(Name = "avatar")]
         public string Avatar { get; set; }
+
+        [DataMember(Name = "heroes")]
+        public IEnumerable<ViewHeroeModel> Heroes { get; set; }
     }
 }

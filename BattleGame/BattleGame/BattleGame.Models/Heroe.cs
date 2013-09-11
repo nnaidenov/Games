@@ -18,5 +18,6 @@ namespace BattleGame.Models
         public int NumberOfLoses { get; set; }
         public virtual ICollection<Unit> Units { get; set; }
         public virtual Race Race { get; set; }
+        public virtual User User { get; set; }
     }
 }
