@@ -159,7 +159,11 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HeroesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Models\CreateHeroeModel.cs" />
+    <Compile Include="Models\ReturnRaceModel.cs" />
+    <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\ViewHeroeModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -169,6 +173,7 @@
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\UserResponseModel.cs" />
     <Compile Include="Persisters\BasePersister.cs" />
+    <Compile Include="Persisters\HeroePersister.cs" />
     <Compile Include="Persisters\UserPersister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

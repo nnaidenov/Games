@@ -131,67 +131,35 @@ $(document).ready(function () {
             }
         });
 
-        //this.get('#/profile', function () {
-        //    if (!dataPersist.users.isLogin()) {
-        //        this.redirect("#/");
-        //    }
-        //    else {
-        //        var self = this;
-        //        httpRequester.getTemplate("profilePreview")
-        //          .then(function (html) {
-        //              $('#profile').html(html);
-        //              var vm = vmFactory.getProfilePreviewVM(function () {
-        //                  self.redirect('#/profile');
-        //              });
-
-        //              ko.applyBindings(vm);
-        //          });
-        //        httpRequester.getTemplate("privateMenu")
-        //          .then(function (html) {
-        //              $('#menu').html(html);
-        //          });
-
-        //        httpRequester.getTemplate("profile")
-        //         .then(function (html) {
-        //             $('#main-content').html(html);
-        //             var vm = vmFactory.getProfileVM();
-        //             console.log(vm);
-        //           ko.applyBindings(vm);
-        //         });
-        //    }
-        //});
-
         this.get('#/createHeroe', function () {
             if (!dataPersist.users.isLogin()) {
-                this.redirect("#/");
+                this.redirect('#/');
             }
             else {
-                ko.removeNode(document.getElementById("loginForm"));
-                var self = this;
-                httpRequester.getTemplate("profilePreview")
-                  .then(function (html) {
-                      $('#profile').html(html);
-                      var vm = vmFactory.getProfilePreviewVM(function () {
-                          self.redirect('#/profile');
-                      });
-
-                      ko.applyBindings(vm, document.getElementById("profile"));
-                  });
                 httpRequester.getTemplate("privateMenu")
-                  .then(function (html) {
-                      $('#menu').html(html);
-                  })
-                  .then(function () {
-                      httpRequester.getTemplate("createHeroe")
-                       .then(function (html) {
-                           $('#main-content').html(html);
-                           vmFactory.getProfileVM()
-                           .then(function (vm) {
-                               ko.applyBindings(vm);
-                           })
+                     .then(function (html) {
+                         $('#menu').html(html);
+                     });
+               viewsFactory.getProfilePreviewView()
+                          .then(function (html) {
+                              $('#profile').html(html);
+                              var vm = vmFactory.getProfilePreviewVM(function () {
+                                  self.redirect('#/profile');
+                              });
+                              ko.cleanNode(document.getElementById("profilePreview"));
+                              ko.applyBindings(vm, document.getElementById("profilePreview"));
+                          });
 
-                       });
-                  });
+                var self = this;
+               viewsFactory.getCreateHeroeView()
+                     .then(function (html) {
+                         $('#main-content').html(html);
+
+                         vmFactory.getProfileVM().
+                         then(function (data) {
+                             ko.applyBindings(data, document.getElementById("profileDetails"));
+                         });
+                     });
             }
         });
     });

@@ -7,7 +7,7 @@ using BattleGame.Services.Models;
 
 namespace BattleGame.Services.Persisters
 {
-    public class UserPersister
+    public class UserPersister : BasePersister
     {
         private const string SessionKeyChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         private const int SessionKeyLength = 50;
@@ -109,11 +109,6 @@ namespace BattleGame.Services.Persisters
         public static User GetUserByUsernameAndDisplayName(string username, string nickname, GameContext context)
         {
             return context.Users.FirstOrDefault(u => u.Username == username.ToLower() && u.Nickname == nickname);
-        }
-
-        public static User GetUserBySessionKey(string sessionKey, GameContext context)
-        {
-            return context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
         }
     }
 }

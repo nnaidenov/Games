@@ -3,13 +3,11 @@ window.viewsFactory = (function () {
     var templates = {};
 
     function getLoginView() {
-
         return httpRequester.getTemplate("loginForm")
             .then(function (data) {
                 console.log("new");
                 return data;
             });
-
     }
 
     function getRegisterView() {
@@ -21,12 +19,10 @@ window.viewsFactory = (function () {
     }
 
     function getProfilePreviewView() {
-
         return httpRequester.getTemplate("profilePreview")
             .then(function (data) {
                 return data;
             });
-
     }
 
     function getProfileView() {
@@ -38,10 +34,18 @@ window.viewsFactory = (function () {
 
     }
 
+    function getCreateHeroeView() {
+        return httpRequester.getTemplate("createHeroe")
+            .then(function (data) {
+                return data;
+            });
+    }
+
     return {
         getLoginView: getLoginView,
         getRegisterView: getRegisterView,
         getProfilePreviewView: getProfilePreviewView,
-        getProfileView: getProfileView
+        getProfileView: getProfileView,
+        getCreateHeroeView: getCreateHeroeView
     }
 }());
