@@ -15,7 +15,7 @@ $(document).ready(function () {
                 httpRequester.getTemplate("privateMenu")
                  .then(function (html) {
                      $('#menu').html(html);
-                 }); 
+                 });
                 var self = this;
                 httpRequester.getTemplate("profilePreview")
                   .then(function (html) {
@@ -24,7 +24,7 @@ $(document).ready(function () {
                           $("#main-content").html("");
                           self.redirect('#/profile');
                       });
-       
+
                       ko.applyBindings(vm);
                   });
             }
@@ -45,11 +45,11 @@ $(document).ready(function () {
                    .then(function (html) {
                        $('#main-content').html(html);
                        var vm = vmFactory.getRegisterVM(function () {
-                           $("#main-content").html("");
+                           ko.removeNode(document.getElementById("registerForm"));
                            self.redirect('#/');
                        });
 
-                       ko.applyBindings(vm);
+                       ko.applyBindings(vm, document.getElementById("registerForm"));
                    });
             }
         });
@@ -66,15 +66,16 @@ $(document).ready(function () {
 
                 var self = this;
                 httpRequester.getTemplate("loginForm")
-                   .then(function (html) {
-                       $('#main-content').html(html);
-                       var vm = vmFactory.getLoginVM(function () {
-                           $("#main-content").html("");
-                           self.redirect('#/');
-                       });
+                     .then(function (html) {
+                         $('#main-content').html(html);
 
-                       ko.applyBindings(vm);
-                   });
+                         var vm = vmFactory.getLoginVM(function () {
+                             ko.removeNode(document.getElementById("loginForm"));
+                             self.redirect('#/');
+                         });
+
+                         ko.applyBindings(vm, document.getElementById("loginForm"));
+                     });
             }
         });
 
@@ -83,6 +84,8 @@ $(document).ready(function () {
             if (dataPersist.users.isLogin()) {
                 dataPersist.users.logout()
                 .then(function () {
+                    $("#main-content").html("");
+                    $("#profile").html("");
                     self.redirect('#/');
                 });
             }
@@ -96,23 +99,66 @@ $(document).ready(function () {
 
         this.get('#/profile', function () {
             if (!dataPersist.users.isLogin()) {
-                httpRequester.getTemplate("publicMenu")
-                  .then(function (html) {
-                      $('#menu').html(html);
-                  });
+                this.redirect("#/");
             }
             else {
-                httpRequester.getTemplate("privateMenu")
-                 .then(function (html) {
-                     $('#menu').html(html);
-                 });
-
-                httpRequester.getTemplate("profile")
+                var self = this;
+                httpRequester.getTemplate("profilePreview")
                   .then(function (html) {
-                      $('#main-content').html(html);
-                      var vm = vmFactory.getProfileVM();
-                      console.log(5);
+                      $('#profile').html(html);
+                      var vm = vmFactory.getProfilePreviewVM(function () {
+                          self.redirect('#/profile');
+                      });
+
                       ko.applyBindings(vm);
+                  });
+                httpRequester.getTemplate("privateMenu")
+                  .then(function (html) {
+                      $('#menu').html(html);
+                  })
+                  .then(function () {
+                      httpRequester.getTemplate("profile")
+                       .then(function (html) {
+                           $('#main-content').html(html);
+                           vmFactory.getProfileVM()
+                           .then(function (vm) {
+                               ko.applyBindings(vm);
+                           })
+                         
+                       });
+                  });
+            }
+        });
+
+        this.get('#/createHeroe', function () {
+            if (!dataPersist.users.isLogin()) {
+                this.redirect("#/");
+            }
+            else {
+                var self = this;
+                httpRequester.getTemplate("profilePreview")
+                  .then(function (html) {
+                      $('#profile').html(html);
+                      var vm = vmFactory.getProfilePreviewVM(function () {
+                          self.redirect('#/profile');
+                      });
+
+                      ko.applyBindings(vm);
+                  });
+                httpRequester.getTemplate("privateMenu")
+                  .then(function (html) {
+                      $('#menu').html(html);
+                  })
+                  .then(function () {
+                      httpRequester.getTemplate("createHeroe")
+                       .then(function (html) {
+                           $('#main-content').html(html);
+                           vmFactory.getProfileVM()
+                           .then(function (vm) {
+                               ko.applyBindings(vm);
+                           })
+
+                       });
                   });
             }
         });

@@ -66,11 +66,8 @@ window.dataPersister = (function () {
                 "X-sessionKey": sessionKey
             };
             console.log(5);
-        
-            httpRequester.getJSON(this.apiUrl + "/details", headers)
-            .then(function (data) {
-                console.log(data);
-            });
+
+            return httpRequester.getJSON(this.apiUrl + "/details", headers);
         }
     });
 

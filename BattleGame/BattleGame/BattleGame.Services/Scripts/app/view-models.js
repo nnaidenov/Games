@@ -5,9 +5,9 @@ window.vmFactory = (function () {
 
     function getRegisterViewModel(callBack) {
         var viewModel = {
-            username: ko.observable(""),
-            nickname: ko.observable(""),
-            password: ko.observable(""),
+            username: ko.observable("a"),
+            nickname: ko.observable("b"),
+            password: ko.observable("c"),
             register: function () {
                 dataPersist.users.register(this.username(), this.nickname(), this.password())
                  .then(function () {
@@ -23,11 +23,9 @@ window.vmFactory = (function () {
 
     function getLoginViewModel(callBack) {
         var viewModel = {
-            username: ko.observable(""),
-            password: ko.observable(""),
+            username: ko.observable("a"),
+            password: ko.observable("b"),
             login: function () {
-                console.log(this.username());
-                console.log(this.password());
                 dataPersist.users.login(this.username(), this.password())
                  .then(function () {
                      callBack();
@@ -52,22 +50,23 @@ window.vmFactory = (function () {
     }
 
     function getProfileViewModel() {
-
-        dataPersist.users.detailInformation()
+        return dataPersist.users.detailInformation()
             .then(function (data) {
                 var viewModel = {
-                    details: data
+                    username: data.username,
+                    nickname: data.nickname,
+                    avatar: data.avatar
                 }
 
                 return viewModel;
             });
     }
-       
 
-        return {
-            getLoginVM: getLoginViewModel,
-            getRegisterVM: getRegisterViewModel,
-            getProfilePreviewVM: getProfilePreviewViewModel,
-            getProfileVM: getProfileViewModel
-        };
-    }());
+
+    return {
+        getLoginVM: getLoginViewModel,
+        getRegisterVM: getRegisterViewModel,
+        getProfilePreviewVM: getProfilePreviewViewModel,
+        getProfileVM: getProfileViewModel
+    };
+}());
