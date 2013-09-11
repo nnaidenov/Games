@@ -17,7 +17,7 @@ namespace BattleGame.Services.Persisters
         public static void ValidateCreateHeroe(CreateHeroeModel model, GameContext context)
         {
             ValidateName(model.Name);
-            ValidateRace(model.Race.Name, context);
+            ValidateRace(model.Race, context);
         }
 
         private static void ValidateName(string name)
@@ -42,9 +42,9 @@ namespace BattleGame.Services.Persisters
             }
         }
 
-        private static void ValidateRace(string raceName, GameContext context)
+        private static void ValidateRace(int raceName, GameContext context)
         {
-            var result = context.Races.FirstOrDefault(r => r.Name == raceName);
+            var result = context.Races.FirstOrDefault(r => r.Id == raceName);
             if (result == null)
             {
                 throw new ArgumentNullException("The Race is not valid!");

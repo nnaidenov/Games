@@ -53,7 +53,7 @@ window.vmFactory = (function () {
         return dataPersist.users.detailInformation()
             .then(function (data) {
                 if (data.heroes.length == 0) {
-                    data.heroes.push({name: "No heroes"});
+                    data.heroes.push({ name: "No heroes" });
                 }
                 var viewModel = {
                     username: data.username,
@@ -61,16 +61,35 @@ window.vmFactory = (function () {
                     avatar: "ds",
                     heroes: data.heroes
                 }
-                console.log(data.heroes);
+
                 return viewModel;
             });
     }
 
+    function getCreateHeroeViewModel() {
+        return dataPersist.races.getAll()
+            .then(function (data) {
+                var viewModel = {
+                    races: data,
+                    heroeName: ko.observable(),
+                    selectedRace: ko.observable(),
+                    create: function () {
+                        dataPersist.heroes.create(this.heroeName(), this.selectedRace())
+                        .then(function () {
+                            console.log("created");
+                        });
+                    }
+                }
+
+                return viewModel;
+            });
+    }
 
     return {
         getLoginVM: getLoginViewModel,
         getRegisterVM: getRegisterViewModel,
         getProfilePreviewVM: getProfilePreviewViewModel,
-        getProfileVM: getProfileViewModel
+        getProfileVM: getProfileViewModel,
+        getCreateHeroeVM: getCreateHeroeViewModel
     };
 }());

@@ -71,10 +71,45 @@ window.dataPersister = (function () {
         }
     });
 
+    var RacePersister = Class.create({
+        init: function (apiUrl) {
+            this.apiUrl = apiUrl
+        },
+        getAll: function () {
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            return httpRequester.getJSON(this.apiUrl + "/all", headers);
+        }
+    });
+
+    var HeroePersister = Class.create({
+        init: function (apiUrl) {
+            this.apiUrl = apiUrl
+        },
+        create: function (name, race) {
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            var heroe = {
+                name: name,
+                race: race
+            }
+
+            return httpRequester.postJSON(this.apiUrl + "/create", heroe, headers);
+        }
+    });
+
     var MainPersister = Class.create({
         init: function (rootUrl) {
             this.rootUrl = rootUrl;
             this.users = new UsersPersister(rootUrl + "users");
+            this.races = new RacePersister(rootUrl + "races");
+            this.heroes = new HeroePersister(rootUrl + "heroes");
         }
     });
 

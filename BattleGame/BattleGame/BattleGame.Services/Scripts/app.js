@@ -155,9 +155,9 @@ $(document).ready(function () {
                      .then(function (html) {
                          $('#main-content').html(html);
 
-                         vmFactory.getProfileVM().
+                         vmFactory.getCreateHeroeVM().
                          then(function (data) {
-                             ko.applyBindings(data, document.getElementById("profileDetails"));
+                             ko.applyBindings(data, document.getElementById("createHeroe"));
                          });
                      });
             }

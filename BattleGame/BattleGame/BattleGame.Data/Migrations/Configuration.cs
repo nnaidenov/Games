@@ -16,10 +16,17 @@ namespace BattleGame.Data.Migrations
 
         protected override void Seed(GameContext context)
         {
-            Role user = new Role { Name = "user" };
-            Role admin = new Role { Name = "admin" };
-            context.Roles.AddOrUpdate(user);
-            context.Roles.AddOrUpdate(admin);
+            context.Roles.AddOrUpdate(new Role { Name = "user" });
+            context.Roles.AddOrUpdate(new Role { Name = "admin" });
+
+            context.Races.AddOrUpdate(new Race { Name = "Race One" });
+            context.Races.AddOrUpdate( new Race { Name = "Race two" });
+            context.Races.AddOrUpdate(new Race { Name = "Race three" });
+            context.Races.AddOrUpdate( new Race { Name = "Race four" });
+
+            context.GameStatuses.AddOrUpdate(new GameStatus { Status = "open" });
+            context.GameStatuses.AddOrUpdate(new GameStatus { Status = "active" });
+            context.GameStatuses.AddOrUpdate(new GameStatus { Status = "full" });
 
             context.SaveChanges();
         }

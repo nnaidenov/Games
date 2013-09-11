@@ -1,12 +1,7 @@
 ﻿<div id="createHeroe">
     <label for="heroeRace">Heroe race: </label>
-    <select id="heroeRace">
-        <option>Race A</option>
-        <option>Race B</option>
-        <option>Race C</option>
-        <option>Race D</option>
-    </select>
+    <select id="heroeRace" data-bind="options: races, optionsValue: 'id', optionsText: 'name', value: selectedRace">"</select>
     <label for="heroeName">Heroe name: </label>
-    <input type="text" id="heroeName" value="" />
-    <button>Create my heroe!</button>
+    <input type="text" id="heroeName" data-bind="value: heroeName" />
+    <button data-bind="click: create">Create my heroe!</button>
 </div>

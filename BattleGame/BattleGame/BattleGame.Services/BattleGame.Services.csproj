@@ -204,8 +204,8 @@
     <Content Include="Scripts\app\data.js" />
     <Content Include="Scripts\app\view-models.js" />
     <Content Include="Scripts\app\views.js" />
-    <Content Include="Scripts\libs\angular.js" />
     <Content Include="Scripts\libs\class.js" />
+    <Content Include="Scripts\libs\cryptojs-sha1.js" />
     <Content Include="Scripts\libs\http-requester.js" />
     <None Include="Scripts\libs\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\libs\jquery-2.0.3.js" />

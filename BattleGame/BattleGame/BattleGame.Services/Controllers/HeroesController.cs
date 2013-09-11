@@ -33,7 +33,7 @@ namespace BattleGame.Services.Controllers
                 Heroe newHeroe = new Heroe()
                  {
                      Name = model.Name,
-                     Race = model.Race,
+                     Race = context.Races.First(r=>r.Id == model.Race),
                      Level = StartHeroeLevel,
                      Points = StartHeroePoints,
                      Money = StartHeroeMoney,
@@ -52,7 +52,7 @@ namespace BattleGame.Services.Controllers
                     Name = newHeroe.Name
                 };
 
-                var response = this.Request.CreateResponse(HttpStatusCode.Created, responseModel);
+                var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
                 return response;
             });
         }

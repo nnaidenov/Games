@@ -14,6 +14,6 @@ namespace BattleGame.Services.Models
         public string Name { get; set; }
 
         [DataMember(Name = "race")]
-        public Race Race { get; set; }
+        public int Race { get; set; }
     }
 }
