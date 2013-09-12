@@ -12,8 +12,7 @@
         <button data-bind="click: register">Register</button>
     </fieldset>
 
-    <form name="formAvatar" method="post" action="api/users/uploadAvatar" enctype="multipart/form-data">
-
+    <form name="formAvatar" method="post" action="api/users/uploadAvatar" enctype="multipart/form-data" id="uploadAvatar">
         <fieldset>
             <legend>Upload avatar</legend>
             <input name="myFile"  type="file" />

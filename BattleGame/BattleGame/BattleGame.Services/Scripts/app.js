@@ -12,7 +12,7 @@ $(document).ready(function () {
                   });
             }
             else {
-              
+
                 httpRequester.getTemplate("privateMenu")
                  .then(function (html) {
                      $('#menu').html(html);
@@ -47,12 +47,12 @@ $(document).ready(function () {
                    .then(function (html) {
                        $('#main-content').html(html);
                        var vm = vmFactory.getRegisterVM(function () {
+                           
                            //ko.removeNode(document.getElementById("registerForm"));
-                           //self.redirect('#/');
+                           //self.redirect('#/profile');
                        });
 
                        ko.applyBindings(vm, document.getElementById("registerForm"));
-                       //ko.applyBindings(vm, document.getElementById("avatarUploader"));
                    });
             }
         });
@@ -127,7 +127,7 @@ $(document).ready(function () {
                          vmFactory.getProfileVM().
                          then(function (data) {
                              ko.applyBindings(data, document.getElementById("profileDetails"));
-                         });                        
+                         });
                      });
             }
         });
@@ -141,26 +141,26 @@ $(document).ready(function () {
                      .then(function (html) {
                          $('#menu').html(html);
                      });
-               viewsFactory.getProfilePreviewView()
-                          .then(function (html) {
-                              $('#profile').html(html);
-                              var vm = vmFactory.getProfilePreviewVM(function () {
-                                  self.redirect('#/profile');
-                              });
-                              ko.cleanNode(document.getElementById("profilePreview"));
-                              ko.applyBindings(vm, document.getElementById("profilePreview"));
-                          });
+                viewsFactory.getProfilePreviewView()
+                           .then(function (html) {
+                               $('#profile').html(html);
+                               var vm = vmFactory.getProfilePreviewVM(function () {
+                                   self.redirect('#/profile');
+                               });
+                               ko.cleanNode(document.getElementById("profilePreview"));
+                               ko.applyBindings(vm, document.getElementById("profilePreview"));
+                           });
 
                 var self = this;
-               viewsFactory.getCreateHeroeView()
-                     .then(function (html) {
-                         $('#main-content').html(html);
+                viewsFactory.getCreateHeroeView()
+                      .then(function (html) {
+                          $('#main-content').html(html);
 
-                         vmFactory.getCreateHeroeVM().
-                         then(function (data) {
-                             ko.applyBindings(data, document.getElementById("createHeroe"));
-                         });
-                     });
+                          vmFactory.getCreateHeroeVM().
+                          then(function (data) {
+                              ko.applyBindings(data, document.getElementById("createHeroe"));
+                          });
+                      });
             }
         });
     });

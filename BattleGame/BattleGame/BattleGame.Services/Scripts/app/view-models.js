@@ -11,7 +11,7 @@ window.vmFactory = (function () {
             register: function () {
                 dataPersist.users.register(this.username(), this.nickname(), this.password())
                  .then(function () {
-                    
+                     $("#uploadAvatar").css("display", "block");
                  }, function (err) {
                      console.log(err);
                  })
@@ -55,13 +55,21 @@ window.vmFactory = (function () {
                 if (data.heroes.length == 0) {
                     data.heroes.push({ name: "No heroes" });
                 }
+
+                var image = data.avatar;
+
+                var stratImageUrl = image.indexOf('upload/') + 7;
+                var endImageUrl = image.lastIndexOf('/');
+                var substring = image.substr(stratImageUrl, endImageUrl - stratImageUrl);
+                var avatarUrl = image.replace(substring, "w_100,h_100");
+
                 var viewModel = {
                     username: data.username,
                     nickname: data.nickname,
-                    avatar: data.avatar,
+                    avatar: avatarUrl,
                     heroes: data.heroes
                 }
-
+                
                 return viewModel;
             });
     }
