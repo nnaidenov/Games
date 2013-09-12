@@ -1,12 +1,25 @@
 ﻿<div id="registerForm">
-    <fieldset>
+
+
+    <fieldset id="registerInformation">
         <legend>Register</legend>
         <label for="tb-username">Username</label>
-        <input data-bind="value: username" type="text" id="tb-username" />
+        <input data-bind="value: username" name="username" type="text" id="tb-username" />
         <label for="tb-nickname">Nickname</label>
-        <input data-bind="value: nickname" type="text" id="tb-nickname" />
+        <input data-bind="value: nickname" name="nickname" type="text" id="tb-nickname" />
         <label for="tb-password">Password</label>
-        <input data-bind="value: password" type="text" id="tb-password" />
+        <input data-bind="value: password" name="authCode" type="text" id="tb-password" />
         <button data-bind="click: register">Register</button>
     </fieldset>
+
+    <form name="formAvatar" method="post" action="api/users/uploadAvatar" enctype="multipart/form-data">
+
+        <fieldset>
+            <legend>Upload avatar</legend>
+            <input name="myFile"  type="file" />
+            <input type="text" data-bind="value: username" name="username">
+            <input type="text" data-bind="value: nickname" name="nickname">
+            <input type="submit" value="Submit" />
+        </fieldset>
+    </form>
 </div>

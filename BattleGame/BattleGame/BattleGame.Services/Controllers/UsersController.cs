@@ -9,6 +9,7 @@ using BattleGame.Models;
 using BattleGame.Services.Attributes;
 using BattleGame.Services.Models;
 using BattleGame.Services.Persisters;
+using System.Web;
 
 namespace BattleGame.Services.Controllers
 {
@@ -20,8 +21,6 @@ namespace BattleGame.Services.Controllers
         {
             return this.ExecuteOperationAndHandleExceptions(() =>
             {
-                UserPersister.ValidateRegisterUser(model);
-
                 var context = new GameContext();
                 var dbUser = UserPersister.GetUserByUsernameAndDisplayName(model.Username, model.Nickname, context);
                 if (dbUser != null)
@@ -34,7 +33,6 @@ namespace BattleGame.Services.Controllers
                     Username = model.Username.ToLower(),
                     Nickname = model.Nickname,
                     AuthCode = model.AuthCode,
-                    Avatar = model.Avatar,
                     Role = context.Roles.Where(r => r.Name == "user").FirstOrDefault()
                 };
                 context.Users.Add(dbUser);
@@ -124,7 +122,6 @@ namespace BattleGame.Services.Controllers
 
                 var model = new UserDetails
                 {
-                    Avatar = user.Avatar,
                     Nickname = user.Nickname,
                     Username = user.Username,
                     Heroes = (
@@ -133,10 +130,46 @@ namespace BattleGame.Services.Controllers
                     {
                         Id = h.Id,
                         Name = h.Name
-                    })
+                    }),
+                    Avatar = user.Avatar
                 };
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK, model);
+                return response;
+            });
+        }
+
+        [HttpPost]
+        [ActionName("uploadAvatar")]
+        public HttpResponseMessage UploadAvatar()
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var httpRequest = HttpContext.Current.Request;
+                string filePath = "NULL";
+
+                if (httpRequest.Files.Count > 0)
+                {
+                    foreach (string file in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[file];
+                        filePath = HttpContext.Current.Server.MapPath("~/avatars/" + postedFile.FileName);
+                        postedFile.SaveAs(filePath);
+                    }
+                }
+
+                var context = new GameContext();
+                var dbUser = UserPersister.GetUserByUsernameAndDisplayName(httpRequest.Form["username"], httpRequest.Form["nickname"], context);
+                if (dbUser == null)
+                {
+                    throw new InvalidOperationException("This user already exists in the database");
+                }
+
+                dbUser.Avatar = filePath;
+
+                context.SaveChanges();
+
+                var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
                 return response;
             });
         }

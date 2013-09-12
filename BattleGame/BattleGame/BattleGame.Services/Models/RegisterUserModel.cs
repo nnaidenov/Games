@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -15,8 +16,5 @@ namespace BattleGame.Services.Models
 
         [DataMember(Name = "username")]
         public string Username { get; set; }
-
-        [DataMember(Name = "avatar")]
-        public string Avatar { get; set; }
     }
 }

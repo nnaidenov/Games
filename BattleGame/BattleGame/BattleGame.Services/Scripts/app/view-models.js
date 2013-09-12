@@ -11,7 +11,7 @@ window.vmFactory = (function () {
             register: function () {
                 dataPersist.users.register(this.username(), this.nickname(), this.password())
                  .then(function () {
-                     callBack();
+                    
                  }, function (err) {
                      console.log(err);
                  })
@@ -58,7 +58,7 @@ window.vmFactory = (function () {
                 var viewModel = {
                     username: data.username,
                     nickname: data.nickname,
-                    avatar: "ds",
+                    avatar: data.avatar,
                     heroes: data.heroes
                 }
 

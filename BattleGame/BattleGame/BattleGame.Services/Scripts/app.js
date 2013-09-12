@@ -47,11 +47,12 @@ $(document).ready(function () {
                    .then(function (html) {
                        $('#main-content').html(html);
                        var vm = vmFactory.getRegisterVM(function () {
-                           ko.removeNode(document.getElementById("registerForm"));
-                           self.redirect('#/');
+                           //ko.removeNode(document.getElementById("registerForm"));
+                           //self.redirect('#/');
                        });
 
                        ko.applyBindings(vm, document.getElementById("registerForm"));
+                       //ko.applyBindings(vm, document.getElementById("avatarUploader"));
                    });
             }
         });
