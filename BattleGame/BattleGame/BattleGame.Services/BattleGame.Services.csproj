@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cloudinary">
+      <HintPath>..\packages\Cloudinary.0.0.5\lib\Cloudinary.dll</HintPath>
+    </Reference>
+    <Reference Include="CloudinaryDotNet">
+      <HintPath>..\packages\CloudinaryDotNet.1.0.10\lib\net40\CloudinaryDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>

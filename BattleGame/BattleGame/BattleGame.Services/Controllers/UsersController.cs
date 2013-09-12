@@ -10,6 +10,10 @@ using BattleGame.Services.Attributes;
 using BattleGame.Services.Models;
 using BattleGame.Services.Persisters;
 using System.Web;
+using System.IO;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using Cloudinary;
 
 namespace BattleGame.Services.Controllers
 {
@@ -146,17 +150,6 @@ namespace BattleGame.Services.Controllers
             return this.ExecuteOperationAndHandleExceptions(() =>
             {
                 var httpRequest = HttpContext.Current.Request;
-                string filePath = "NULL";
-
-                if (httpRequest.Files.Count > 0)
-                {
-                    foreach (string file in httpRequest.Files)
-                    {
-                        var postedFile = httpRequest.Files[file];
-                        filePath = HttpContext.Current.Server.MapPath("~/avatars/" + postedFile.FileName);
-                        postedFile.SaveAs(filePath);
-                    }
-                }
 
                 var context = new GameContext();
                 var dbUser = UserPersister.GetUserByUsernameAndDisplayName(httpRequest.Form["username"], httpRequest.Form["nickname"], context);
@@ -165,7 +158,26 @@ namespace BattleGame.Services.Controllers
                     throw new InvalidOperationException("This user already exists in the database");
                 }
 
-                dbUser.Avatar = filePath;
+
+                if (httpRequest.Files.Count > 0)
+                {
+                    foreach (string file in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[file];
+
+                        var configuration = new AccountConfiguration("djlwcsyiz", "781383948985498", "Vh5BQmeTxvSKvTGTg-wRDYKqPz4");
+
+                        var uploader = new Uploader(configuration);
+                        string publicId = Path.GetFileNameWithoutExtension(postedFile.FileName);
+                        var uploadResult = uploader.Upload(new UploadInformation(postedFile.FileName, postedFile.InputStream)
+                        {
+                            PublicId = publicId,
+                            Format = postedFile.FileName.Substring(postedFile.FileName.Length - 3),
+                        });
+
+                        dbUser.Avatar = uploadResult.Url;
+                    }
+                }
 
                 context.SaveChanges();
 

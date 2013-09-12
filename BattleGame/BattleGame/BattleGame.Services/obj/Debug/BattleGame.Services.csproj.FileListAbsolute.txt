@@ -71,3 +71,5 @@ C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\b
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\obj\Debug\BattleGame.Services.csprojResolveAssemblyReference.cache
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\obj\Debug\BattleGame.Services.dll
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\obj\Debug\BattleGame.Services.pdb
+C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\Cloudinary.dll
+C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\CloudinaryDotNet.dll
