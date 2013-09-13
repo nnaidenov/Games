@@ -21,11 +21,11 @@ namespace BattleGame.Models
 
         public virtual Role Role { get; set; }
 
-        public virtual ICollection<Heroe> Heroes { get; set; }
+        public virtual ICollection<Hero> Heroes { get; set; }
 
         public User()
         {
-            this.Heroes = new HashSet<Heroe>();
+            this.Heroes = new HashSet<Hero>();
         }
     }
 }

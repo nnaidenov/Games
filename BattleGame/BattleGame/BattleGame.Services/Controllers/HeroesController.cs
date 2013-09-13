@@ -30,10 +30,10 @@ namespace BattleGame.Services.Controllers
                 var context = new GameContext();
                 HeroePersister.ValidateCreateHeroe(model, context);
 
-                Heroe newHeroe = new Heroe()
+                Hero newHeroe = new Hero()
                  {
                      Name = model.Name,
-                     Race = context.Races.First(r=>r.Id == model.Race),
+                     Race = context.Races.First(r => r.Id == model.Race),
                      Level = StartHeroeLevel,
                      Points = StartHeroePoints,
                      Money = StartHeroeMoney,
@@ -46,13 +46,58 @@ namespace BattleGame.Services.Controllers
 
                 context.SaveChanges();
 
-                var responseModel = new ViewHeroeModel()
-                {
-                    Id = newHeroe.Id,
-                    Name = newHeroe.Name
-                };
-
                 var response = this.Request.CreateResponse(HttpStatusCode.NoContent);
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [ActionName("all")]
+        public HttpResponseMessage GetAllHerosPerHeroe(
+             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
+             string sessionKey)
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new GameContext();
+                var user = BasePersister.GetUserBySessionKey(sessionKey, context);
+
+                if (user == null)
+                {
+                    throw new InvalidOperationException("Invalid username or password!");
+                }
+
+                var heroes = user.Heroes;
+
+                var models = (
+                    from h in heroes
+                    select new ViewHeroeModel
+                    {
+                        Id = h.Id,
+                        Name = h.Name,
+                        Image = h.Image,
+                        Money = h.Money,
+                        NumberOfWins = h.NumberOfWins,
+                        NumberOfLoses = h.NumberOfLoses,
+                        Level = h.Level,
+                        Race = h.Race,
+                        Points = h.Points,
+                        Units = (from u in h.Units
+                                 select new ViewUnitModel
+                                 {
+                                     Id = u.Id,
+                                     Name = u.Name,
+                                     Image = u.Image,
+                                     Health = u.Health,
+                                     Attack = u.Attack,
+                                     Defense = u.Defense,
+                                     Damage = u.Damage,
+                                     Speed = u.Speed
+                                 })
+                    });
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK, models);
+
                 return response;
             });
         }

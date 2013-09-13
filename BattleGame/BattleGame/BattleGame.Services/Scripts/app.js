@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
     var dataPersist = dataPersister.get("api/");
+
+
     var app = Sammy('#app', function () {
 
         this.get('#/', function () {
@@ -12,23 +14,7 @@ $(document).ready(function () {
                   });
             }
             else {
-
-                httpRequester.getTemplate("privateMenu")
-                 .then(function (html) {
-                     $('#menu').html(html);
-                 });
-                var self = this;
-
-                httpRequester.getTemplate("profilePreview")
-                  .then(function (html) {
-                      $('#profile').html(html);
-                      var vm = vmFactory.getProfilePreviewVM(function () {
-                          $("#main-content").html("");
-                          self.redirect('#/profile');
-                      });
-
-                      ko.applyBindings(vm, document.getElementById("profile"));
-                  });
+                privateLayout();
             }
         });
 
@@ -47,9 +33,8 @@ $(document).ready(function () {
                    .then(function (html) {
                        $('#main-content').html(html);
                        var vm = vmFactory.getRegisterVM(function () {
-                           
-                           //ko.removeNode(document.getElementById("registerForm"));
-                           //self.redirect('#/profile');
+                           ko.removeNode(document.getElementById("registerForm"));
+                           self.redirect('#/profile');
                        });
 
                        ko.applyBindings(vm, document.getElementById("registerForm"));
@@ -132,26 +117,13 @@ $(document).ready(function () {
             }
         });
 
-        this.get('#/createHeroe', function () {
+        this.get('#/createHero', function () {
             if (!dataPersist.users.isLogin()) {
                 this.redirect('#/');
             }
             else {
-                httpRequester.getTemplate("privateMenu")
-                     .then(function (html) {
-                         $('#menu').html(html);
-                     });
-                viewsFactory.getProfilePreviewView()
-                           .then(function (html) {
-                               $('#profile').html(html);
-                               var vm = vmFactory.getProfilePreviewVM(function () {
-                                   self.redirect('#/profile');
-                               });
-                               ko.cleanNode(document.getElementById("profilePreview"));
-                               ko.applyBindings(vm, document.getElementById("profilePreview"));
-                           });
+                privateLayout();
 
-                var self = this;
                 viewsFactory.getCreateHeroeView()
                       .then(function (html) {
                           $('#main-content').html(html);
@@ -163,7 +135,43 @@ $(document).ready(function () {
                       });
             }
         });
+
+        this.get('#/manageHeroes', function () {
+            if (!dataPersist.users.isLogin()) {
+                this.redirect('#/');
+            }
+            else {
+                var self = this;
+                privateLayout();
+
+                httpRequester.getTemplate("profile")
+                     .then(function (html) {
+                         $('#main-content').html(html);
+
+                         vmFactory.getProfileVM().
+                         then(function (data) {
+                             ko.applyBindings(data, document.getElementById("profileDetails"));
+                         });
+                     });
+            }
+        });
     });
 
     app.run('#/');
+
+    function privateLayout() {
+        httpRequester.getTemplate("privateMenu")
+             .then(function (html) {
+                 $('#menu').html(html);
+             });
+        httpRequester.getTemplate("profilePreview")
+            .then(function (html) {
+                $('#profile').html(html);
+                var vm = vmFactory.getProfilePreviewVM(function () {
+                    window.location.assign("#/profile")
+                });
+                ko.cleanNode(document.getElementById("profilePreview"));
+                ko.applyBindings(vm, document.getElementById("profilePreview"));
+            });
+    }
 });

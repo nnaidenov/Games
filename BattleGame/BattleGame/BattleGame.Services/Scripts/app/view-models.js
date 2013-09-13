@@ -11,7 +11,16 @@ window.vmFactory = (function () {
             register: function () {
                 dataPersist.users.register(this.username(), this.nickname(), this.password())
                  .then(function () {
-                     $("#uploadAvatar").css("display", "block");
+                     $("#registerInformation").fadeOut(500);
+                     $("#uploadAvatar").fadeIn(1000);
+                     $("#uploadAvatar").submit(function () {
+                         $("#uploadAvatar").fadeOut(1000);
+                         $("#registerForm").prepend("Your registration complite!");
+                         var a = $("<a/>");
+                         a.attr("href", "http://localhost:40111/index.html#/profile");
+                         a.text("Go to your Profile")
+                         $("#registerForm").append(a);
+                     });
                  }, function (err) {
                      console.log(err);
                  })
@@ -69,7 +78,7 @@ window.vmFactory = (function () {
                     avatar: avatarUrl,
                     heroes: data.heroes
                 }
-                
+
                 return viewModel;
             });
     }
@@ -84,7 +93,7 @@ window.vmFactory = (function () {
                     create: function () {
                         dataPersist.heroes.create(this.heroeName(), this.selectedRace())
                         .then(function () {
-                            console.log("created");
+                            alert("Hero was created!");
                         });
                     }
                 }

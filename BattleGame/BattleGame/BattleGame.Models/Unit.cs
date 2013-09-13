@@ -11,6 +11,6 @@ namespace BattleGame.Models
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }
-        public virtual Heroe Heroe { get; set; }
+        public virtual Hero Hero { get; set; }
     }
 }

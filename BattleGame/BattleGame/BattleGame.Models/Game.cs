@@ -13,8 +13,8 @@ namespace BattleGame.Models
         public string Title { get; set; }
         public virtual GameStatus Status { get; set; }
         public virtual Map Map { get; set; }
-        public virtual Heroe FirstPlayer { get; set; }
-        public virtual Heroe SecondPlayer { get; set; }
-        public virtual Heroe UserInTurn { get; set; }
+        public virtual Hero FirstPlayer { get; set; }
+        public virtual Hero SecondPlayer { get; set; }
+        public virtual Hero UserInTurn { get; set; }
     }
 }
