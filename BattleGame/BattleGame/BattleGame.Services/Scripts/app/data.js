@@ -101,6 +101,14 @@ window.dataPersister = (function () {
             }
 
             return httpRequester.postJSON(this.apiUrl + "/create", heroe, headers);
+        },
+        all: function () {
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            return httpRequester.getJSON(this.apiUrl + "/all", headers);
         }
     });
 

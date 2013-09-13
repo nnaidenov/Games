@@ -102,11 +102,36 @@ window.vmFactory = (function () {
             });
     }
 
+    function getManageHeroeViewModel() {
+        return dataPersist.heroes.all()
+            .then(function (data) {
+                console.log(data);
+                for (var i in data) {
+                    var curHero = data[i];
+                    var image = curHero.image
+                    if (image != null) {
+                        var stratImageUrl = image.indexOf('upload/') + 7;
+                        var endImageUrl = image.lastIndexOf('/');
+                        var substring = image.substr(stratImageUrl, endImageUrl - stratImageUrl);
+                        var avatarUrl = image.replace(substring, "w_100,h_100");
+                        curHero.image = avatarUrl;
+                    }
+                }               
+            
+                var viewModel = {
+                    heroes: data
+                }
+
+                return viewModel;
+            });
+    }
+
     return {
         getLoginVM: getLoginViewModel,
         getRegisterVM: getRegisterViewModel,
         getProfilePreviewVM: getProfilePreviewViewModel,
         getProfileVM: getProfileViewModel,
-        getCreateHeroeVM: getCreateHeroeViewModel
+        getCreateHeroeVM: getCreateHeroeViewModel,
+        getManageHeroeVM: getManageHeroeViewModel
     };
 }());

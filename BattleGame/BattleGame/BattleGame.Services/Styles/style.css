@@ -19,3 +19,8 @@
 #uploadAvatar {
     display: none;
 }
+
+#heroesInformation {
+    border: 5px solid black;
+    width: 30%;
+}

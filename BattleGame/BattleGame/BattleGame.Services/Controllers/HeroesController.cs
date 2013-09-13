@@ -53,7 +53,7 @@ namespace BattleGame.Services.Controllers
 
         [HttpGet]
         [ActionName("all")]
-        public HttpResponseMessage GetAllHerosPerHeroe(
+        public HttpResponseMessage GetAllHeros(
              [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
              string sessionKey)
         {

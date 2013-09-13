@@ -39,9 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseHero.cs" />
     <Compile Include="BaseUnit.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Heroe.cs" />
+    <Compile Include="Hero.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs" />

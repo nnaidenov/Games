@@ -178,6 +178,7 @@
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\UserResponseModel.cs" />
+    <Compile Include="Models\ViewUnitModel.cs" />
     <Compile Include="Persisters\BasePersister.cs" />
     <Compile Include="Persisters\HeroePersister.cs" />
     <Compile Include="Persisters\UserPersister.cs" />
@@ -225,6 +226,7 @@
     <None Include="Scripts\libs\_references.js" />
     <Content Include="Scripts\partials\createHeroe.html" />
     <Content Include="Scripts\partials\loginForm.html" />
+    <Content Include="Scripts\partials\manageHeroes.html" />
     <Content Include="Scripts\partials\privateMenu.html" />
     <Content Include="Scripts\partials\profile.html" />
     <Content Include="Scripts\partials\profilePreview.html" />
