@@ -28,6 +28,13 @@ namespace BattleGame.Services.Controllers
             return this.ExecuteOperationAndHandleExceptions(() =>
             {
                 var context = new GameContext();
+                var user = BasePersister.GetUserBySessionKey(sessionKey, context);
+
+                if (user == null)
+                {
+                    throw new InvalidOperationException("Invalid username or password!");
+                }
+
                 HeroePersister.ValidateCreateHeroe(model, context);
 
                 Hero newHeroe = new Hero()
@@ -71,7 +78,7 @@ namespace BattleGame.Services.Controllers
 
                 var models = (
                     from h in heroes
-                    select new ViewHeroeModel
+                    select new ViewHeroModel
                     {
                         Id = h.Id,
                         Name = h.Name,
@@ -80,20 +87,8 @@ namespace BattleGame.Services.Controllers
                         NumberOfWins = h.NumberOfWins,
                         NumberOfLoses = h.NumberOfLoses,
                         Level = h.Level,
-                        Race = h.Race,
-                        Points = h.Points,
-                        Units = (from u in h.Units
-                                 select new ViewUnitModel
-                                 {
-                                     Id = u.Id,
-                                     Name = u.Name,
-                                     Image = u.Image,
-                                     Health = u.Health,
-                                     Attack = u.Attack,
-                                     Defense = u.Defense,
-                                     Damage = u.Damage,
-                                     Speed = u.Speed
-                                 })
+                        Race = h.Race.Name,
+                        Points = h.Points
                     });
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK, models);
@@ -101,5 +96,43 @@ namespace BattleGame.Services.Controllers
                 return response;
             });
         }
+
+        [HttpGet]
+        public HttpResponseMessage GetHeroUnits(int id,
+             [ValueProvider(typeof(HeaderValueProviderFactory<string>))]
+             string sessionKey)
+        {
+            return this.ExecuteOperationAndHandleExceptions(() =>
+            {
+                var context = new GameContext();
+                var user = BasePersister.GetUserBySessionKey(sessionKey, context);
+
+                if (user == null)
+                {
+                    throw new InvalidOperationException("Invalid username or password!");
+                }
+
+                var units = context.Units.Where(h => h.Hero.Id == id);
+
+                var models = (
+                    from u in units
+                    select new ViewUnitModel
+                    {
+                        Id = u.Id,
+                        Name = u.Name,
+                        Image = u.Image,
+                        Health = u.Health,
+                        Attack = u.Attack,
+                        Defense = u.Defense,
+                        Damage = u.Damage,
+                        Speed = u.Speed
+                    });
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK, models);
+
+                return response;
+            });
+        }
+
     }
 }

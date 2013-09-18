@@ -130,7 +130,7 @@ namespace BattleGame.Services.Controllers
                     Username = user.Username,
                     Heroes = (
                     from h in user.Heroes
-                    select new ViewHeroeModel
+                    select new ViewHeroModel
                     {
                         Id = h.Id,
                         Name = h.Name

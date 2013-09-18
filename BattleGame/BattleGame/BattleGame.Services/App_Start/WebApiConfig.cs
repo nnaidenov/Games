@@ -11,6 +11,19 @@ namespace BattleGame.Services
         {
             config.MapHttpAttributeRoutes();
 
+
+            config.Routes.MapHttpRoute(
+                name: "UnitsApi",
+                routeTemplate: "api/units/{id}/{action}",
+                 defaults: new { controller = "units" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "HeroApi",
+                routeTemplate: "api/heroes/{id}/units",
+                 defaults: new { controller = "heroes" }
+            );
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{action}"

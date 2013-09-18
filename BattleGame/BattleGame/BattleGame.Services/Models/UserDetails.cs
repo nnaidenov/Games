@@ -19,6 +19,6 @@ namespace BattleGame.Services.Models
         public string Avatar { get; set; }
 
         [DataMember(Name = "heroes")]
-        public IEnumerable<ViewHeroeModel> Heroes { get; set; }
+        public IEnumerable<ViewHeroModel> Heroes { get; set; }
     }
 }

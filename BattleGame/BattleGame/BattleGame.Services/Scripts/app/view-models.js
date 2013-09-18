@@ -102,10 +102,9 @@ window.vmFactory = (function () {
             });
     }
 
-    function getManageHeroeViewModel() {
+    function getLoadHeroesViewModel() {
         return dataPersist.heroes.all()
             .then(function (data) {
-                console.log(data);
                 for (var i in data) {
                     var curHero = data[i];
                     var image = curHero.image
@@ -117,9 +116,69 @@ window.vmFactory = (function () {
                         curHero.image = avatarUrl;
                     }
                 }               
-            
+
                 var viewModel = {
                     heroes: data
+                }
+
+                return viewModel;
+            });
+    }
+
+    function getLoadUnitsViewModel(heroId) {
+        return dataPersist.heroes.getUnits(heroId)
+            .then(function (data) {
+                console.log(data);
+                var isVisible = "visible";
+                if (data.length > 0) {
+                    console.log("Ima");
+                }
+                else {
+                    console.log("nqma");
+                    isVisible = "noVisible"
+                }
+
+                for (var i in data) {
+                    var curHero = data[i];
+                    var image = curHero.image
+                    if (image != null) {
+                        var stratImageUrl = image.indexOf('upload/') + 7;
+                        var endImageUrl = image.lastIndexOf('/');
+                        var substring = image.substr(stratImageUrl, endImageUrl - stratImageUrl);
+                        var avatarUrl = image.replace(substring, "w_100,h_100");
+                        curHero.image = avatarUrl;
+                    }
+                }
+
+                var viewModel = {
+                    units: data,
+                    isVisible: isVisible,
+                    heroId: heroId
+                }
+
+                return viewModel;
+            });
+    }
+
+    function getCreateUnitViewModel(heroId) {
+        console.log(heroId);
+        return dataPersist.units.all(heroId)
+            .then(function (data) {
+                for (var i in data) {
+                    var curHero = data[i];
+                    var image = curHero.image
+                    if (image != null) {
+                        var stratImageUrl = image.indexOf('upload/') + 7;
+                        var endImageUrl = image.lastIndexOf('/');
+                        var substring = image.substr(stratImageUrl, endImageUrl - stratImageUrl);
+                        var avatarUrl = image.replace(substring, "w_100,h_100");
+                        curHero.image = avatarUrl;
+                    }
+                }
+                console.log(heroId);
+                var viewModel = {
+                    baseUnits: data,
+                    heroId: heroId
                 }
 
                 return viewModel;
@@ -132,6 +191,8 @@ window.vmFactory = (function () {
         getProfilePreviewVM: getProfilePreviewViewModel,
         getProfileVM: getProfileViewModel,
         getCreateHeroeVM: getCreateHeroeViewModel,
-        getManageHeroeVM: getManageHeroeViewModel
+        getLoadHeroesVM: getLoadHeroesViewModel,
+        getLoadUnitsVM: getLoadUnitsViewModel,
+        getCreateUnitVM: getCreateUnitViewModel
     };
 }());

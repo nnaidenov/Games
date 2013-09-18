@@ -23,4 +23,24 @@
 #heroesInformation {
     border: 5px solid black;
     width: 30%;
+    height: 500px;
+    float: left;
+    overflow: scroll;
+}
+
+#unitsInformation {
+    display: inline-block;
+    border: 3px solid black;
+}
+
+#app .noVisible {
+    display: none;
+}
+
+#app .visible {
+    display:inherit;
+}
+
+.singleBaseUnit {
+    border: 1px solid red;
 }

@@ -109,6 +109,42 @@ window.dataPersister = (function () {
             };
 
             return httpRequester.getJSON(this.apiUrl + "/all", headers);
+        },
+        getUnits: function (heroId) {
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            return httpRequester.getJSON(this.apiUrl + "/" + heroId + "/units", headers);
+        }
+    });
+
+    var UnitsPersister = Class.create({
+        init: function (apiUrl) {
+            this.apiUrl = apiUrl
+        },
+        all: function (heroId) {
+            console.log(heroId);
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            return httpRequester.getJSON(this.apiUrl + "/" + heroId + "/UnitByRace", headers);
+        },
+        addNew: function (heroId, baseUnitId) {
+            var sessionKey = localStorage.getItem("sessionKey");
+            var headers = {
+                "X-sessionKey": sessionKey
+            };
+
+            var data = {
+                heroId: heroId,
+                baseUnitId: baseUnitId
+            };
+
+            return httpRequester.postJSON(this.apiUrl + "/create", data, headers);
         }
     });
 
@@ -118,6 +154,7 @@ window.dataPersister = (function () {
             this.users = new UsersPersister(rootUrl + "users");
             this.races = new RacePersister(rootUrl + "races");
             this.heroes = new HeroePersister(rootUrl + "heroes");
+            this.units = new UnitsPersister(rootUrl + "units");
         }
     });
 

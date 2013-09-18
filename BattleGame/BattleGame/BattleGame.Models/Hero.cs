@@ -7,8 +7,11 @@ using BattleGame.Models;
 
 namespace BattleGame.Models
 {
-    public class Hero : BaseHero
+    public class Hero
     {
+        public int Id { get; set; }
+        public string Image { get; set; }
+        public virtual Race Race { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
         public int Points { get; set; }

@@ -146,11 +146,46 @@ $(document).ready(function () {
                 httpRequester.getTemplate("manageHeroes")
                      .then(function (html) {
                          $('#main-content').html(html);
-                         
-                         vmFactory.getManageHeroeVM().
+
+                         vmFactory.getLoadHeroesVM().
                          then(function (data) {
                              ko.applyBindings(data, document.getElementById("heroesInformation"));
                          });
+                         var sourse = $("#chooseUnit").html();
+
+                         $("#heroesInformation").on("click", "button", function (ev) {
+                             var heroId = event.target.id;
+                             $("#unitsInformation").attr("class", "visible");
+                             $("#chooseUnit").attr("class", "noVisible");
+                             $("#chooseUnit").html("");
+
+                             $("#chooseUnit").html(sourse);
+                             vmFactory.getLoadUnitsVM(heroId)
+                             .then(function (data) {
+                                 ko.cleanNode(document.getElementById("unitsInformation"));
+                                 ko.applyBindings(data, document.getElementById("unitsInformation"));
+                             })
+                         });
+              
+                         $("#addUnit").on("click", "button", function (ev) {
+                             $("#chooseUnit").attr("class", "visible");
+                             ko.cleanNode(document.getElementById("addUnit"));
+                             var heroId = event.target.id;
+
+                             vmFactory.getCreateUnitVM(heroId)
+                             .then(function (data) {
+
+                                 ko.cleanNode(document.getElementById("chooseUnit"));
+                                 ko.applyBindings(data, document.getElementById("chooseUnit"));
+                             })
+                         });
+
+                         $("#chooseUnit").on("click", "button", function (ev) {
+                             var button = event.target;
+                             var unitId = $(button).data("unitid");
+                             var heroId = $(button).data("heroid");
+                             console.log(unitId + " " + heroId);
+                         })
                      });
             }
         });

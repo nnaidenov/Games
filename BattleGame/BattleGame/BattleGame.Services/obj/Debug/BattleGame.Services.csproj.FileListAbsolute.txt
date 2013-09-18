@@ -1,4 +1,3 @@
-C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\BattleGame.Services.dll.config
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\BattleGame.Services.dll
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\BattleGame.Services.pdb
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\Antlr3.Runtime.dll
@@ -73,3 +72,4 @@ C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\o
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\obj\Debug\BattleGame.Services.pdb
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\Cloudinary.dll
 C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\CloudinaryDotNet.dll
+C:\Users\Werew\Google Диск\Games\BattleGame\BattleGame\BattleGame.Services\bin\BattleGame.Services.dll.config
